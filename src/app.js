@@ -23,8 +23,11 @@ input1.onchange = (e) => {
 };
 
 controllerSignIn.onclick = () => {
+  sendButton.removeAttribute("onclick");
   showForm(input1, "Digite o número da conta", sendButton, "Cadastrar");
-  signIn(result1);
+  sendButton.onclick = () => {
+    signIn(result1);
+  };
 };
 controllerConsult.onclick = () => {
   console.log("clicou");
