@@ -21,6 +21,30 @@
   height: 700px;
   padding: 30px 0 70px 0;
   background-color: #f4f5fa;
+  display: grid;
+  grid-template-rows: 33px 46px 46px 46px 1fr;
+}
+
+.input1 {
+  grid-row: 2;
+}
+.input2 {
+  grid-row: 3;
+}
+.input3 {
+  grid-row: 4;
+}
+.send {
+  grid-row: 5;
+  background-color: #4c7edd;
+  color: white;
+  font-size: 16px;
+  font-family: Arial, Helvetica, sans-serif;
+  padding: 24px;
+  border-radius: 50px;
+  align-self: end;
+  justify-self: end;
+  margin-right: 44px;
 }
 
 .button {
