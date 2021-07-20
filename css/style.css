@@ -12,12 +12,14 @@
 }
 
 .buttons-menu {
+  margin-top: 54px;
   width: 322px;
 }
 
 .content {
   width: 678px;
   height: 100vh;
+  padding: 30px 0 70px 0;
   background-color: #f4f5fa;
 }
 
@@ -34,4 +36,12 @@
 .clicked {
   color: white;
   background-color: #4c7edd;
+}
+
+.hide {
+  display: none;
+}
+
+.show {
+  display: initial;
 }
