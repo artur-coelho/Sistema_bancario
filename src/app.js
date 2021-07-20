@@ -1,5 +1,6 @@
 import { signIn } from "./cadastrar_conta.js";
 import { consult } from "./consultar_saldo.js";
+import { credit } from "./creditar_conta.js";
 
 const content = document.querySelector("#content");
 
@@ -22,7 +23,14 @@ let result3 = "";
 
 input1.onchange = (e) => {
   result1 = e.target.value;
-  console.log(result1);
+};
+
+input2.onchange = (e) => {
+  result2 = e.target.value;
+};
+
+input3.onchange = (e) => {
+  result3 = e.target.value;
 };
 
 controllerSignIn.onclick = () => {
@@ -44,11 +52,24 @@ controllerConsult.onclick = () => {
   );
   sendButton.onclick = () => {
     consult(result1, answerLabel);
+    clearForm([input1]);
   };
 };
 
 controllerCredit.onclick = () => {
-  console.log("clicou");
+  sendButton.removeAttribute("onclick");
+  showForm(
+    input1,
+    "Digite o número da conta que deseja creditar",
+    sendButton,
+    "Creditar",
+    input2,
+    "Digite o valor a creditar"
+  );
+  sendButton.onclick = () => {
+    credit(result1, result2);
+    clearForm([input1, input2]);
+  };
 };
 
 controllerDebit.onclick = () => {
@@ -87,7 +108,7 @@ function showForm(
 }
 
 function clearForm(listInput) {
-  lisInput.forEach((input) => {
+  listInput.forEach((input) => {
     input.value = "";
   });
 }
