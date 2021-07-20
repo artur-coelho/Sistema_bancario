@@ -6,5 +6,3 @@ export const signIn = (accountNumber) => {
   const textAccount = JSON.stringify(account);
   localStorage.setItem(`${accountNumber}`, textAccount);
 };
-
-//const pegaralgo = JSON.parse(localstorage.getItem(`${accountNumber}`));

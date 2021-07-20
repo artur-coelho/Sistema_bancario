@@ -1,4 +1,5 @@
 import { signIn } from "./cadastrar_conta.js";
+import { consult } from "./consultar_saldo.js";
 
 const content = document.querySelector("#content");
 
@@ -11,6 +12,8 @@ const controllerTransfer = document.querySelector(".transfer");
 const input1 = document.querySelector(".input1");
 const input2 = document.querySelector(".input2");
 const input3 = document.querySelector(".input3");
+
+const answerLabel = document.querySelector(".answer");
 const sendButton = document.querySelector(".send");
 
 let result1 = "";
@@ -27,10 +30,21 @@ controllerSignIn.onclick = () => {
   showForm(input1, "Digite o número da conta", sendButton, "Cadastrar");
   sendButton.onclick = () => {
     signIn(result1);
+    clearForm([input1]);
   };
 };
+
 controllerConsult.onclick = () => {
-  console.log("clicou");
+  sendButton.removeAttribute("onclick");
+  showForm(
+    input1,
+    "Digite o número da conta que deseja consultar",
+    sendButton,
+    "Consultar"
+  );
+  sendButton.onclick = () => {
+    consult(result1, answerLabel);
+  };
 };
 
 controllerCredit.onclick = () => {
@@ -55,19 +69,25 @@ function showForm(
   inputC = null,
   valueInputC = null
 ) {
-  inputA.value = "";
+  input2.classList.remove("show");
+  input3.classList.remove("show");
+  answerLabel.classList.remove("show");
   inputA.classList.add("show");
   inputA.setAttribute("placeholder", valueInputA);
   if (inputB) {
-    inputB.value = "";
     inputB.classList.add("show");
     inputB.setAttribute("placeholder", valueInputB);
   }
   if (inputC) {
-    inputC.value = "";
     inputC.classList.add("show");
     inputC.setAttribute("placeholder", valueInputC);
   }
   button.innerText = valueButton;
   button.classList.add("show");
+}
+
+function clearForm(listInput) {
+  lisInput.forEach((input) => {
+    input.value = "";
+  });
 }
