@@ -1,6 +1,8 @@
 import { signIn } from "./cadastrar_conta.js";
 import { consult } from "./consultar_saldo.js";
 import { credit } from "./creditar_conta.js";
+import { debit } from "./debitar_conta.js";
+import { transfer } from "./trasferencia.js";
 
 const content = document.querySelector("#content");
 
@@ -73,11 +75,37 @@ controllerCredit.onclick = () => {
 };
 
 controllerDebit.onclick = () => {
-  console.log("clicou");
+  sendButton.removeAttribute("onclick");
+  showForm(
+    input1,
+    "Digite o número da conta que deseja debitar",
+    sendButton,
+    "Debitar",
+    input2,
+    "Digite o valor a Debitar"
+  );
+  sendButton.onclick = () => {
+    debit(result1, result2);
+    clearForm([input1, input2]);
+  };
 };
 
 controllerTransfer.onclick = () => {
-  console.log("clicou");
+  sendButton.removeAttribute("onclick");
+  showForm(
+    input1,
+    "Digite o numero da conta origem:",
+    sendButton,
+    "Transferir",
+    input2,
+    "Digite o numero da conta destino:",
+    input3,
+    "Digite o valor que deseja transferir"
+  );
+  sendButton.onclick = () => {
+    transfer(result1, result2, result3);
+    clearForm([input1, input2, input3]);
+  };
 };
 
 function showForm(
