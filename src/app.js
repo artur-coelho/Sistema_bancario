@@ -4,14 +4,13 @@ import { credit } from "./creditar_conta.js";
 import { debit } from "./debitar_conta.js";
 import { transfer } from "./trasferencia.js";
 
-const content = document.querySelector("#content");
-
 const controllerSignIn = document.querySelector(".sign-in");
 const controllerConsult = document.querySelector(".consult");
 const controllerCredit = document.querySelector(".credit");
 const controllerDebit = document.querySelector(".debit");
 const controllerTransfer = document.querySelector(".transfer");
 
+const contentTitle = document.querySelector(".title");
 const input1 = document.querySelector(".input1");
 const input2 = document.querySelector(".input2");
 const input3 = document.querySelector(".input3");
@@ -37,7 +36,14 @@ input3.onchange = (e) => {
 
 controllerSignIn.onclick = () => {
   sendButton.removeAttribute("onclick");
-  showForm(input1, "Digite o número da conta", sendButton, "Cadastrar");
+  showForm(
+    contentTitle,
+    "Cadastrar conta",
+    input1,
+    "Digite o número da conta",
+    sendButton,
+    "Cadastrar"
+  );
   sendButton.onclick = () => {
     signIn(result1);
     clearForm([input1]);
@@ -47,6 +53,8 @@ controllerSignIn.onclick = () => {
 controllerConsult.onclick = () => {
   sendButton.removeAttribute("onclick");
   showForm(
+    contentTitle,
+    "Consultar saldo",
     input1,
     "Digite o número da conta que deseja consultar",
     sendButton,
@@ -61,6 +69,8 @@ controllerConsult.onclick = () => {
 controllerCredit.onclick = () => {
   sendButton.removeAttribute("onclick");
   showForm(
+    contentTitle,
+    "Crédito",
     input1,
     "Digite o número da conta que deseja creditar",
     sendButton,
@@ -77,6 +87,8 @@ controllerCredit.onclick = () => {
 controllerDebit.onclick = () => {
   sendButton.removeAttribute("onclick");
   showForm(
+    contentTitle,
+    "Débito",
     input1,
     "Digite o número da conta que deseja debitar",
     sendButton,
@@ -93,6 +105,8 @@ controllerDebit.onclick = () => {
 controllerTransfer.onclick = () => {
   sendButton.removeAttribute("onclick");
   showForm(
+    contentTitle,
+    "Transferência",
     input1,
     "Digite o numero da conta origem:",
     sendButton,
@@ -109,6 +123,8 @@ controllerTransfer.onclick = () => {
 };
 
 function showForm(
+  title,
+  valueTitle,
   inputA,
   valueInputA,
   button,
@@ -121,6 +137,8 @@ function showForm(
   input2.classList.remove("show");
   input3.classList.remove("show");
   answerLabel.classList.remove("show");
+  title.classList.add("show");
+  title.innerText = valueTitle;
   inputA.classList.add("show");
   inputA.setAttribute("placeholder", valueInputA);
   if (inputB) {
