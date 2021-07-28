@@ -9,13 +9,15 @@ const controllerConsult = document.querySelector(".consult");
 const controllerCredit = document.querySelector(".credit");
 const controllerDebit = document.querySelector(".debit");
 const controllerTransfer = document.querySelector(".transfer");
+const controllerInterest = document.querySelector(".interest");
 
 const contentTitle = document.querySelector(".title");
 const input1 = document.querySelector(".input1");
 const input2 = document.querySelector(".input2");
 const input3 = document.querySelector(".input3");
 const checkBoxDiv = document.querySelector(".checkbox");
-const checkBox = document.querySelector("#bonus");
+const checkBoxBonus = document.querySelector("#bonus");
+const checkboxSaving = document.querySelector("#saving");
 
 const answerLabel = document.querySelector(".answer");
 const sendButton = document.querySelector(".send");
@@ -48,7 +50,7 @@ controllerSignIn.onclick = () => {
   );
   checkBoxDiv.classList.add("show");
   sendButton.onclick = () => {
-    signIn(result1, checkBox);
+    signIn(result1, checkBoxBonus, checkboxSaving);
     clearForm([input1]);
   };
 };
@@ -122,6 +124,33 @@ controllerTransfer.onclick = () => {
   sendButton.onclick = () => {
     transfer(result1, result2, result3);
     clearForm([input1, input2, input3]);
+  };
+};
+
+controllerInterest.onclick = () => {
+  sendButton.removeAttribute("onclick");
+  showForm(
+    contentTitle,
+    "Render Juros",
+    input1,
+    "Digite o número da conta que irá render",
+    sendButton,
+    "Render",
+    input2,
+    "Digite a quantidade de juros"
+  );
+  sendButton.onclick = () => {
+    const response = JSON.parse(localStorage.getItem(`${result1}`));
+    console.log(response);
+    response.earnInterest(result2);
+    localStorage.setItem(`${result1}`, JSON.stringify(response));
+    window.alert(
+      "O novo saldo da conta " +
+        response.accountNumber +
+        " é: R$" +
+        response.accountBalance
+    );
+    clearForm([input1, input2]);
   };
 };
 

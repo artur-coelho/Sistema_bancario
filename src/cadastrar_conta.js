@@ -6,11 +6,13 @@ export const signIn = (accountNumber, isBonus, isSavings) => {
   if (isBonus.checked) {
     account.accountPoints = 10;
   }
-  if (isSavings) {
+  if (isSavings.checked) {
+    console.log("entrou");
     account.earnInterest = function (interestRate) {
-      const interestAmount = interestRate * this.accountBalance;
+      const interestAmount = (interestRate / 100) * this.accountBalance;
       this.accountBalance += interestAmount;
     };
+    account.earnInterest(10);
   }
   const textAccount = JSON.stringify(account);
   localStorage.setItem(`${accountNumber}`, textAccount);
