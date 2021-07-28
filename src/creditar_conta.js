@@ -4,9 +4,10 @@ export const credit = (accountNumber, value) => {
   total += parseFloat(value);
   response.accountBalance = total;
   if (response.accountPoints) {
-    points = Math.trunc(value / 100);
-    accountPoints += points;
+    const points = Math.trunc(value / 100);
+    response.accountPoints += points;
   }
+
   localStorage.setItem(`${accountNumber}`, JSON.stringify(response));
   window.alert(
     "O novo saldo da conta " +
