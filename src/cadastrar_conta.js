@@ -3,7 +3,7 @@ export const signIn = (accountNumber, isBonus, isSavings) => {
     accountNumber: accountNumber,
     accountBalance: 0,
   };
-  if (isBonus) {
+  if (isBonus.checked) {
     account.accountPoints = 10;
   }
   if (isSavings) {

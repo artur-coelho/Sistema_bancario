@@ -14,6 +14,8 @@ const contentTitle = document.querySelector(".title");
 const input1 = document.querySelector(".input1");
 const input2 = document.querySelector(".input2");
 const input3 = document.querySelector(".input3");
+const checkBoxDiv = document.querySelector(".checkbox");
+const checkBox = document.querySelector("#bonus");
 
 const answerLabel = document.querySelector(".answer");
 const sendButton = document.querySelector(".send");
@@ -44,8 +46,9 @@ controllerSignIn.onclick = () => {
     sendButton,
     "Cadastrar"
   );
+  checkBoxDiv.classList.add("show");
   sendButton.onclick = () => {
-    signIn(result1);
+    signIn(result1, checkBox);
     clearForm([input1]);
   };
 };
@@ -137,6 +140,7 @@ function showForm(
   input2.classList.remove("show");
   input3.classList.remove("show");
   answerLabel.classList.remove("show");
+  checkBoxDiv.classList.remove("show");
   title.classList.add("show");
   title.innerText = valueTitle;
   inputA.classList.add("show");
