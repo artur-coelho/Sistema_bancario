@@ -22,7 +22,7 @@
   padding: 30px 0 70px 0;
   background-color: #f4f5fa;
   display: grid;
-  grid-template-rows: 33px repeat(4, 46px) 1fr;
+  grid-template-rows: 33px repeat(5, 46px) 1fr;
   gap: 20px;
 }
 
@@ -47,7 +47,7 @@
 }
 
 .answer {
-  grid-row: 5;
+  grid-row: 6;
   background-color: white;
   padding: 12px 24px;
 }
