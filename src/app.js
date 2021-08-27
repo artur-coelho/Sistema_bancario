@@ -2,6 +2,7 @@ import { signIn } from "./cadastrar_conta.js";
 import { consult } from "./consultar_saldo.js";
 import { credit } from "./creditar_conta.js";
 import { debit } from "./debitar_conta.js";
+import { earn } from "./render_juros.js";
 import { transfer } from "./trasferencia.js";
 
 const controllerSignIn = document.querySelector(".sign-in");
@@ -140,16 +141,7 @@ controllerInterest.onclick = () => {
     "Digite a quantidade de juros"
   );
   sendButton.onclick = () => {
-    const response = JSON.parse(localStorage.getItem(`${result1}`));
-    console.log(response);
-    response.earnInterest(result2);
-    localStorage.setItem(`${result1}`, JSON.stringify(response));
-    window.alert(
-      "O novo saldo da conta " +
-        response.accountNumber +
-        " é: R$" +
-        response.accountBalance
-    );
+    earn(result1, result2);
     clearForm([input1, input2]);
   };
 };
