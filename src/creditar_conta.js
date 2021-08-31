@@ -1,7 +1,13 @@
 export const credit = (accountNumber, value, isTransfer = false) => {
+  if (parseFloat(value) < 0) {
+    window.alert("Digite um valor válido para creditar");
+    return false;
+  }
+
   const response = JSON.parse(localStorage.getItem(`${accountNumber}`));
   let total = parseFloat(response.accountBalance);
   total += parseFloat(value);
+
   response.accountBalance = total;
   if (response.accountPoints) {
     if (isTransfer == true) {
@@ -20,4 +26,5 @@ export const credit = (accountNumber, value, isTransfer = false) => {
       " é: R$" +
       response.accountBalance
   );
+  return true;
 };

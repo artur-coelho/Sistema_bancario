@@ -7,6 +7,11 @@ export const debit = (accountNumber, value) => {
     window.alert("O saldo da conta poupança não pode ser negativo!");
     return false;
   }
+  if (total < -1000) {
+    window.alert("O saldo da conta não pode ser menor que R$ -1000,00");
+    return false;
+  }
+
   response.accountBalance = total;
 
   localStorage.setItem(`${accountNumber}`, JSON.stringify(response));
