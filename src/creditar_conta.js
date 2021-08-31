@@ -5,7 +5,7 @@ export const credit = (accountNumber, value, isTransfer = false) => {
   response.accountBalance = total;
   if (response.accountPoints) {
     if (isTransfer == true) {
-      const points = Math.trunc(value / 200);
+      const points = Math.trunc(value / 150);
       response.accountPoints += points;
     } else {
       const points = Math.trunc(value / 100);
