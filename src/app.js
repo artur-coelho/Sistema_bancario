@@ -51,8 +51,17 @@ controllerSignIn.onclick = () => {
   );
   checkBoxDiv.classList.add("show");
   sendButton.onclick = () => {
-    signIn(result1, checkBoxBonus, checkboxSaving);
-    clearForm([input1]);
+    if (checkboxSaving.checked) {
+      if (result2 == "" || result2 == "0") {
+        window.alert("A conta poupança deve possuir um saldo inicial!");
+      } else {
+        signIn(result1, checkBoxBonus, checkboxSaving, result2);
+      }
+    } else {
+      signIn(result1, checkBoxBonus, checkboxSaving);
+    }
+    clearForm([input1, input2]);
+    result2 = "";
   };
 };
 
@@ -177,6 +186,15 @@ function showForm(
   button.innerText = valueButton;
   button.classList.add("show");
 }
+
+checkboxSaving.onclick = () => {
+  if (checkboxSaving.checked) {
+    input2.classList.add("show");
+    input2.setAttribute("placeholder", "Digite o saldo inicial da conta");
+  } else {
+    input2.classList.remove("show");
+  }
+};
 
 function clearForm(listInput) {
   listInput.forEach((input) => {

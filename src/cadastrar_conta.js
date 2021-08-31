@@ -5,14 +5,20 @@ export const newAccount = (accountNumber) => {
   };
 };
 
-export const signIn = (accountNumber, isBonus, isSavings) => {
-  const account = newAccount(accountNumber, isBonus);
+export const signIn = (
+  accountNumber,
+  isBonus,
+  isSavings,
+  initialValue = "0"
+) => {
+  const account = newAccount(accountNumber);
 
   if (isBonus.checked) {
     account.accountPoints = 10;
   }
   if (isSavings.checked) {
     account.isSavings = true;
+    account.accountBalance = parseFloat(initialValue);
   }
   const textAccount = JSON.stringify(account);
   localStorage.setItem(`${accountNumber}`, textAccount);
