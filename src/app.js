@@ -52,8 +52,10 @@ controllerSignIn.onclick = () => {
   checkBoxDiv.classList.add("show");
   sendButton.onclick = () => {
     if (checkboxSaving.checked) {
-      if (result2 == "" || result2 == "0") {
-        window.alert("A conta poupança deve possuir um saldo inicial!");
+      if (result2 == "" || parseFloat(result2) <= 0) {
+        window.alert(
+          "A conta poupança deve possuir um saldo inicial maior que 0!"
+        );
       } else {
         signIn(result1, checkBoxBonus, checkboxSaving, result2);
       }
